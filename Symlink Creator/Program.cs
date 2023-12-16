@@ -26,6 +26,7 @@ namespace Symlink_Creator
         [STAThread]
         private static void Main(string[] args)
         {
+#if false //skip admin check
             if (string.IsNullOrEmpty((from o in args where o == "--engage" select o).FirstOrDefault()))
             {
                 var btnElevate = new Button { FlatStyle = FlatStyle.System };
@@ -49,6 +50,7 @@ namespace Symlink_Creator
                 Application.Exit();
             }
             else
+#endif
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
@@ -59,6 +61,6 @@ namespace Symlink_Creator
         [DllImport("user32", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern int SendMessage(IntPtr hWnd, uint Msg, int wParam, IntPtr lParam);
 
-        #endregion
+#endregion
     }
 }
